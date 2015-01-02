@@ -16,27 +16,27 @@ public class ControllerTest2 {
  
     @Test
     public void testFileExists1(){
-        assertFalse(com.controller.Utility.fileExists(new File("dddddddddddddddddd")));        
+        assertFalse(com.controller.Utils.fileExists(new File("dddddddddddddddddd")));        
     }    
     
     @Test
     public void testFileExists2(){
          File file = FileUtils.getTempDirectory();
-         assertTrue(com.controller.Utility.fileExists(file));      
+         assertTrue(com.controller.Utils.fileExists(file));      
     }
     
     @Test
     public void testFileExists3(){
          File file = FileUtils.getTempDirectory();
          String path = " "+file.toString();
-         assertTrue(com.controller.Utility.fileExists(new File(path)));      
+         assertTrue(com.controller.Utils.fileExists(new File(path)));      
     }
     
     @Test
     public void testFileExists4(){
          File file = FileUtils.getTempDirectory();
          String path = file.toString()+" ";
-         assertTrue(com.controller.Utility.fileExists(new File(path)));      
+         assertTrue(com.controller.Utils.fileExists(new File(path)));      
     }
     
    

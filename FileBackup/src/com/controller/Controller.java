@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
-
 import com.model.Model;
 import com.view.View;
 
@@ -49,7 +47,7 @@ public class Controller implements ViewListener {
 				@Override
 				public void run() {
 					try {
-						FileUtils.copyDirectoryToDirectory(new File(dir), dest);
+						Utils.copy(new File(dir), dest);
 					} catch (IOException e) {
 						//result = false;
 					}
@@ -68,7 +66,7 @@ public class Controller implements ViewListener {
 	public void defaultSourcesMenuItemClicked(ViewEvent evt)
 			throws IOException, InvalidPathException {
 		Path path = Paths.get("log\\default_sources").toAbsolutePath();
-		List<String> lines = FileUtils.readLines(path.toFile());
+		List<String> lines = Utils.readFile(path);
 		evt.setSourceDirs(lines);
 	}
 	
@@ -80,7 +78,7 @@ public class Controller implements ViewListener {
 	public void defaultDestinationsMenuItemClicked(ViewEvent evt)
 			throws IOException, InvalidPathException {
 		Path path = Paths.get("log\\default_destinations").toAbsolutePath();
-		List<String> lines = FileUtils.readLines(path.toFile());
+		List<String> lines = Utils.readFile(path);
 		evt.setDestinationDirs(lines);
 	}
 

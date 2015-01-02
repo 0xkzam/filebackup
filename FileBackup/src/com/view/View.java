@@ -35,7 +35,7 @@ public class View extends javax.swing.JFrame {
 	private ViewEvent viewEvent;
 
 	/**
-	 * Creates new form FileCopy
+	 * Creates new form FileBackuo
 	 */
 	public View() {
 		initComponents();

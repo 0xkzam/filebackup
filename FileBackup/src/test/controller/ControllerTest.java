@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.controller.Utility;
+import com.controller.Utils;
 
 /**
  *
@@ -48,7 +48,7 @@ public class ControllerTest {
 
         dest = new File(tempPath + "\\TempDest");
 
-        Utility.copy(new File(tempPath + "\\TempSrc"), dest);
+        Utils.copy(new File(tempPath + "\\TempSrc"), dest);
     }
     
     @After

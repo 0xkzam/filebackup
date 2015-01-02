@@ -4,12 +4,9 @@
 package com.controller;
 
 import java.io.File;
-import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
 
 /**
  * ViewEvent bean class
@@ -53,7 +50,7 @@ public class ViewEvent {
 	 */
 	public void setDestinationDir(String destinationDir)
 			throws InvalidPathException {
-		boolean exists = Files.exists(new File(destinationDir).toPath());
+		boolean exists = Utils.fileExists(new File(destinationDir));
 		if (exists) {
 			this.destinationDir = destinationDir;
 		}else{
@@ -79,7 +76,7 @@ public class ViewEvent {
 		if (sourceDirs == null)
 			sourceDirs = new ArrayList<String>();
 
-		boolean exists = Files.exists(new File(dir).toPath());
+		boolean exists = Utils.fileExists(new File(dir));
 		if (exists) {
 			sourceDirs.add(dir);			
 		}else{
@@ -123,7 +120,7 @@ public class ViewEvent {
 	 * Get size of the Destination directory
 	 */
 	public long sizeOfDestination() {
-		return FileUtils.sizeOfDirectory(new File(destinationDir));
+		return Utils.fileSize(new File(destinationDir));
 	}
 
 	/**
@@ -132,7 +129,7 @@ public class ViewEvent {
 	public long sizeOfSources() {
 		long size = 0;
 		for (String dir : sourceDirs) {
-			size += FileUtils.sizeOfDirectory(new File(dir));
+			size += Utils.fileSize(new File(dir));
 		}
 		return size;
 	}
@@ -143,7 +140,7 @@ public class ViewEvent {
 	 */
 	public void setSourceDirs(List<String> lines) throws InvalidPathException{	
 		for (String dir : lines) {
-			boolean b =Files.exists(new File(dir).toPath());
+			boolean b = Utils.fileExists(new File(dir));
 			if(!b){
 				new InvalidPathException(dir, "Invalid dir/file name!");
 			}
@@ -157,7 +154,7 @@ public class ViewEvent {
 	 */
 	public void setDestinationDirs(List<String> lines) throws InvalidPathException{	
 		for (String dir : lines) {
-			boolean b =Files.exists(new File(dir).toPath());
+			boolean b = Utils.fileExists(new File(dir));
 			if(!b){
 				new InvalidPathException(dir, "Invalid dir/file name!");
 			}
