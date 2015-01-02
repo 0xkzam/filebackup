@@ -83,7 +83,7 @@ public class ViewEvent {
 		if (exists) {
 			sourceDirs.add(dir);			
 		}else{
-			throw new InvalidPathException(destinationDir,"Invalied dir/file name");
+			throw new InvalidPathException(destinationDir,"Invalid dir/file name");
 		}
 	}
 

@@ -68,7 +68,7 @@ public class Controller implements ViewListener {
 	@Override
 	public void defaultSourcesMenuItemClicked(ViewEvent evt)
 			throws IOException, InvalidPathException {
-		Path path = Paths.get("log\\default").toAbsolutePath();
+		Path path = Paths.get("log\\default_sources").toAbsolutePath();
 		List<String> lines = FileUtils.readLines(path.toFile());
 		evt.setSourceDirs(lines);
 	}
