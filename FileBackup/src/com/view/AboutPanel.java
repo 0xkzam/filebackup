@@ -35,7 +35,7 @@ public class AboutPanel {
 
         // html content
         JEditorPane ep = new JEditorPane("text/html", "<html><body style=\"" + style + "\">" //
-                + "FileCopy 1.0v<br/>"
+                + "FileBackup 1.0v<br/>"
                 + "Author: Kasun Amarasena<br/>"
                 + "Email: kasunAmarasena@gmail.com<br/>"
                 + "Blog: <a href=\"http://csviews.blogspot.com/\">http://csviews.blogspot.com/</a><br/>"
