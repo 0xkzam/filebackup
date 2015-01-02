@@ -44,6 +44,9 @@ public class View extends javax.swing.JFrame {
 
 	}
 
+	/**
+	 * Adding Listeners to swing components
+	 */
 	private void initEvents() {
 		closeButton.addActionListener(new java.awt.event.ActionListener() {
 			@Override
