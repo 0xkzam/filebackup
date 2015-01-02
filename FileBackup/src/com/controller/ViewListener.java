@@ -20,4 +20,9 @@ public interface ViewListener {
 	 * Load the default source dirs/files 
 	 */
 	public void defaultSourcesMenuItemClicked(ViewEvent evt) throws IOException,InvalidPathException ;
+	
+	/** 
+	 * Load the default destinations dirs/files 
+	 */
+	public void defaultDestinationsMenuItemClicked(ViewEvent evt)  throws IOException, InvalidPathException;
 }

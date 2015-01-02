@@ -90,6 +90,14 @@ public class View extends javax.swing.JFrame {
 						defaultSourcesMenuItemActionPerformed(e);
 					}
 				});
+		
+		defaultDestinationsMenuItem
+		.addActionListener(new java.awt.event.ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				defaultSDestinationsMenuItemActionPerformed(e);
+			}
+		});
 
 		progressBar.addPropertyChangeListener(new PropertyChangeListener() {
 
@@ -100,6 +108,39 @@ public class View extends javax.swing.JFrame {
 			}
 		});
 
+	}
+
+	/**	 
+	 * Load default destination dirs
+	 * 
+	 * NOTE: Since this is displayed in a text box only one destination or the
+	 * first destination of the returned list of destination dirs can be used.
+	 * Therefore the main GUI must be updated to view more than one destination dir.
+	 */
+	protected void defaultSDestinationsMenuItemActionPerformed(ActionEvent e) {
+		if (viewEvent == null) {
+			viewEvent = new ViewEvent();
+		}
+		try {
+			viewListener.defaultDestinationsMenuItemClicked(viewEvent);			
+			List<String> dirs = viewEvent.getDestinationDirs();		
+			
+			// Only the first dir of the list is used.
+			if(!dirs.isEmpty()){
+				textFieldDestination.setText(dirs.get(0));
+			}			
+		}catch (InvalidPathException e1) {
+			clearTable();			
+			JOptionPane.showMessageDialog(this,
+					"There is an invalid directory/file in the default list!", "Error!",
+					JOptionPane.ERROR_MESSAGE);
+		}catch (IOException e1) {
+			clearTable();			
+			JOptionPane.showMessageDialog(this,
+					"Error loading default data!", "Error!",
+					JOptionPane.ERROR_MESSAGE);
+		}		
+		
 	}
 
 	/**
@@ -345,6 +386,7 @@ public class View extends javax.swing.JFrame {
 		jMenuBar1 = new javax.swing.JMenuBar();
 		jMenu1 = new javax.swing.JMenu();
 		defaultSourcesMenuItem = new javax.swing.JMenuItem();
+		defaultDestinationsMenuItem = new javax.swing.JMenuItem();
 		aboutMenuItem = new javax.swing.JMenuItem();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -397,9 +439,13 @@ public class View extends javax.swing.JFrame {
 		// progress bar setup		
 
 		jMenu1.setText("File");
-
+		
+		// Menu Items
 		defaultSourcesMenuItem.setText("Load default source dirs");
 		jMenu1.add(defaultSourcesMenuItem);
+		
+		defaultDestinationsMenuItem.setText("Load default destination dirs");
+		jMenu1.add(defaultDestinationsMenuItem);
 
 		aboutMenuItem.setText("About");
 		jMenu1.add(aboutMenuItem);
@@ -547,6 +593,7 @@ public class View extends javax.swing.JFrame {
 	private javax.swing.JButton closeButton;
 	private javax.swing.JButton copyButton;
 	private javax.swing.JMenuItem defaultSourcesMenuItem;
+	private javax.swing.JMenuItem defaultDestinationsMenuItem;
 	private javax.swing.JLabel jLabel1;
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JMenu jMenu1;

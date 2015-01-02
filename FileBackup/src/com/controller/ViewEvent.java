@@ -21,6 +21,7 @@ public class ViewEvent {
 
 	private String destinationDir;
 	private List<String> sourceDirs;
+	private List<String> destinationDirs;
 
 	/**
 	 * 
@@ -60,8 +61,7 @@ public class ViewEvent {
 		}
 	}
 
-	/**
-	 * 
+	/**	  
 	 * @return List of directories/files to be copied
 	 */
 	public List<String> getSourceDirs() {
@@ -149,6 +149,27 @@ public class ViewEvent {
 			}
 		}
 		this.sourceDirs = lines;		
+	}
+	
+	/**
+	 * @param List
+	 *            of source dirs/files
+	 */
+	public void setDestinationDirs(List<String> lines) throws InvalidPathException{	
+		for (String dir : lines) {
+			boolean b =Files.exists(new File(dir).toPath());
+			if(!b){
+				new InvalidPathException(dir, "Invalid dir/file name!");
+			}
+		}
+		this.destinationDirs = lines;		
+	}
+	
+	/**	  
+	 * @return List of destination directories
+	 */
+	public List<String> getDestinationDirs() {
+		return destinationDirs;
 	}
 
 }

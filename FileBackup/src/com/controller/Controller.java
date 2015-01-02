@@ -62,8 +62,7 @@ public class Controller implements ViewListener {
 
 	/**
 	 * Load the default source dirs/files
-	 * 
-	 * @return true list of all the dirs are valid, false otherwise
+	 * 	
 	 */
 	@Override
 	public void defaultSourcesMenuItemClicked(ViewEvent evt)
@@ -71,6 +70,18 @@ public class Controller implements ViewListener {
 		Path path = Paths.get("log\\default_sources").toAbsolutePath();
 		List<String> lines = FileUtils.readLines(path.toFile());
 		evt.setSourceDirs(lines);
+	}
+	
+	/**
+	 * Load the default destination dirs/files
+	 * 	 
+	 */
+	@Override
+	public void defaultDestinationsMenuItemClicked(ViewEvent evt)
+			throws IOException, InvalidPathException {
+		Path path = Paths.get("log\\default_destinations").toAbsolutePath();
+		List<String> lines = FileUtils.readLines(path.toFile());
+		evt.setDestinationDirs(lines);
 	}
 
 }
