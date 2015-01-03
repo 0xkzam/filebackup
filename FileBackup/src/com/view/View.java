@@ -241,7 +241,7 @@ public class View extends javax.swing.JFrame {
 			@Override
 		    public void done() {
 		        Toolkit.getDefaultToolkit().beep();  
-		        progressBar.setValue(progressBar.getMinimum());
+		        progressBar.setValue(progressBar.getMaximum());
 		        progressBar.setStringPainted(false);
 		        clearTable();
 		        copyButton.setEnabled(true);
@@ -323,23 +323,19 @@ public class View extends javax.swing.JFrame {
 				JOptionPane.INFORMATION_MESSAGE);
 
 		if (dir != null && !dir.equals("") && !viewEvent.containsDir(dir)) {
-			boolean successful;
+			
 			try {				
-				viewEvent.addSourceDir(dir);
-				successful = true;
-			} catch (InvalidPathException exception) {
-				successful = false;
-			}
-
-			if (successful) {
-				String[] temp = { dir };
-				tableModel.addRow(temp);
-				removeButton.setEnabled(true);
-			} else {
+				viewEvent.addSourceDir(dir);				
+			} catch (Exception exception) {
 				JOptionPane.showMessageDialog(this,
 						"Please enter a valid directory!", "Error!",
 						JOptionPane.ERROR_MESSAGE);
+				return;
 			}
+			
+			String[] temp = { dir };
+			tableModel.addRow(temp);
+			removeButton.setEnabled(true);		
 		}
 	}
 
