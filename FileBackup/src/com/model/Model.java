@@ -10,6 +10,8 @@ package com.model;
  *
  * @author Kasun Amarasena
  */
-public class Model {
+public class Model extends java.util.Observable{
+	
+	
     
 }

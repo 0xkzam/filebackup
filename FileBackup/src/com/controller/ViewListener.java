@@ -11,10 +11,9 @@ import java.nio.file.InvalidPathException;
 public interface ViewListener {	
 	
 	/**
-	 * Task of coping the files
-	 * @return true if all the files are copied successfully, false otherwise
+	 * Task of coping the files	
 	 */
-	public boolean copyButtonClicked(ViewEvent evt) throws IOException, InvalidPathException;	
+	public void copyButtonClicked(ViewEvent evt);	
 	
 	/** 
 	 * Load the default source dirs/files 

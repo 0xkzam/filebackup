@@ -241,8 +241,7 @@ public class View extends javax.swing.JFrame {
 			@Override
 		    public void done() {
 		        Toolkit.getDefaultToolkit().beep();  
-		        progressBar.setValue(progressBar.getMaximum());
-		        progressBar.setStringPainted(false);
+		        progressBar.setValue(progressBar.getMaximum());		        
 		        clearTable();
 		        copyButton.setEnabled(true);
 		        setTitle(title+": Completed");		        
@@ -259,12 +258,17 @@ public class View extends javax.swing.JFrame {
 		new SwingWorker<Void,Void>(){
 
 			@Override
-			protected Void doInBackground() throws Exception {
-				boolean result = viewListener.copyButtonClicked(viewEvent);		
-				if(result){
-					viewEvent.removeSourceDirAll();
-				}else{
-					System.err.println("Error: "+viewEvent.getSourceDirs().toString());
+			protected Void doInBackground()  {
+				viewListener.copyButtonClicked(viewEvent);	
+				
+				if(!viewEvent.getSourceDirs().isEmpty()){		
+					clearTable();
+					List<String> dirs = viewEvent.getSourceDirs();					
+					for (String ob:dirs) {
+						ob="Failed: "+ ob;
+						Object[] temp = {ob};
+						tableModel.addRow(temp);
+					}	
 				}
 				return null;
 			}}.execute();		
